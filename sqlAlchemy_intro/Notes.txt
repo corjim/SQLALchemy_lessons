@@ -1,0 +1,9 @@
+
+
+            SQL ALchemy
+
+    Popular, powerful, Python-based ORM (object-relational mapping)
+
+    Translation service between OOP in our server language and relational data in our database.
+
+    Can use itself, with flask
