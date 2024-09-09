@@ -5,9 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 def connect_db(app):
-    db.app = app 
-    # associate our db into the app
-    db.init_app(app)
+    with app.app_context():
+        db.app = app 
+        # associate our db into the app
+        db.init_app(app)
 
 
     # MODELS GO BELOW
@@ -22,12 +23,12 @@ class Pet(db.Model):
                    primary_key=True,
                    autoincrement=True)
 
-    name = db.column(db.String(50),
+    name = db.Column(db.String(50),
                      nullable=True,
                      unique=True)
-    species = db.Column(db.String(30), nullabe=True)
+    species = db.Column(db.String(30), nullable=True)
 
-    hunger = db.Column(db.Integer, nullabe=False, default=20)
+    hunger = db.Column(db.Integer, nullable=False, default=20)
 
 
 # if you do make changes in the code or table, the changes will not reflect on the file. Best practice is to Drop the table in postgresql shell, rerun the file to update the changes.
@@ -38,10 +39,10 @@ class Pet(db.Model):
  # 
  #   Make an instance of the method as follows:
 
-fluffy = Pet(name ='fluffy', species = "pet") # creates a new pet called fluffy.
+#fluffy = Pet(name ='fluffy', species = "pet") # creates a new pet called fluffy.
 
-db.session.add(fluffy)      # required to add to database
-db.session.commit()         # commit the transaction.
+#db.session.add(fluffy)      # required to add to database
+#db.session.commit()         # commit the transaction.
 
 
 #       *** MULTIPLE INSERT **
